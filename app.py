@@ -8,6 +8,16 @@ import sklearn
 
 nltk.download('punkt', quiet=True)
 
+import os
+import nltk
+
+# Specify the custom nltk_data path
+nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
+
+# Ensure punkt and stopwords are available
+nltk.download('punkt', quiet=True)
+nltk.download('stopwords', quiet=True)
+
 ps = PorterStemmer()
 
 

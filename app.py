@@ -6,6 +6,8 @@ import nltk
 from nltk.stem.porter import PorterStemmer
 import sklearn
 
+nltk.download('punkt', quiet=True)
+
 ps = PorterStemmer()
 
 

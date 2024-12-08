@@ -11,12 +11,21 @@ nltk.download('punkt', quiet=True)
 import os
 import nltk
 
-# Specify the custom nltk_data path
-nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
+# Explicitly add the local nltk_data directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+nltk.data.path.append(os.path.join(BASE_DIR, 'nltk_data'))
 
-# Ensure punkt and stopwords are available
-nltk.download('punkt', quiet=True)
-nltk.download('stopwords', quiet=True)
+# Ensure required resources are loaded
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt', download_dir=os.path.join(BASE_DIR, 'nltk_data'))
+
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords', download_dir=os.path.join(BASE_DIR, 'nltk_data'))
+
 
 ps = PorterStemmer()
 
